@@ -1,0 +1,107 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- ... (head content) ... -->
+</head>
+<body>
+    <header>
+        <h1>Research Papers</h1>
+    </header>
+    <main>
+        <section id="search-section">
+            <h2>Search for Research Papers</h2>
+            <form method="POST">
+                <input type="text" name="query" placeholder="Enter your search query">
+                <input type="submit" value="Search">
+            </form>
+        </section>
+
+
+        {% if summaries %}
+        <section id="summary-section">
+            <h2>Summary Section</h2>
+                {{ summaries }}
+        </section>
+        {% endif %}
+
+
+
+        {% if terminology %}
+        <section id="terminology-section">
+            <h2>Terminology Section</h2>
+            <ul>
+                {% for term, explanation in terminology.items() %}
+                    <li><b>{{ term }}</b>: {{ explanation }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if classic_papers %}
+        <section id="classic-section">
+            <h2>Trending Research Papers</h2>
+            
+                {% for paper in classic_papers %}
+                <div class="sherif" style="border:thin">
+                <ul>
+                {% for key, value in paper.items() %}
+                    {% if key == 'URL:'  %}
+                    <li><b>{{ key }}</b> <a href={{value}}>{{ value }}</a></li>
+                    
+
+                    {% else %}
+                    <li><b>{{ key }}</b> {{ value }}</li>
+                    {% endif %}
+                {% endfor %}
+                
+                </ul>
+                </div>
+                {% endfor %}
+        </section>
+        {% endif %}
+
+
+
+        {% if trending_papers %}
+        <section id="trending-section">
+            <h2>Trending Research Papers</h2>
+            
+                {% for paper in trending_papers %}
+                <div class="sherif" style="border:thin">
+                <ul>
+                {% for key, value in paper.items() %}
+                    {% if key == 'URL:'  %}
+                    <li><b>{{ key }}</b> <a href={{value}}>{{ value }}</a></li>
+                    
+
+                    {% else %}
+                    <li><b>{{ key }}</b> {{ value }}</li>
+                    {% endif %}
+                {% endfor %}
+                
+                </ul>
+                </div>
+                {% endfor %}
+        </section>
+        {% endif %}
+
+
+
+
+
+        {% if books %}
+        <section id="books-section">
+            <h2>Books Section</h2>
+            <ul>
+                {% for book in books %}
+                    <li><a href={{book}}>{{ book}}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+    </main>
+</body>
+</html>
