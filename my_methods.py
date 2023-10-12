@@ -24,8 +24,6 @@ try:
 except:
     pass
 
-# openai.api_key_path = <PATH>
-openai.api_key = open_api_key
 
 metaphor = Metaphor(metaphor_api_key)
 
